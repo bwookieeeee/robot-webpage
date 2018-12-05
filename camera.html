@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Robot Setup | Camera</title>
+        <meta charset=UTF-8>
+    </head>
+    <body>
+        <div id=content>
+            <form>
+                <table>
+                    <tr>
+                        <td>No Camera</td>
+                        <td><select>
+                            <option value=true>True</option>
+                            <option value=false selected>False</option>
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td>No Mic</td>
+                        <td><select>
+                            <option value=true>True</option>
+                            <option value=false selected>False</option>
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td>Type</td>
+                        <td><select>
+                            <option value=ffmpeg selected>FFMPEG</option>
+                            <option value=ffmpeg_arecord>FFMPEG-arecord</option>
+                            <option value=none>None</option>
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td>Resolution</td>
+                        <td><select>
+                            <option value=768x432 selected>768 x 432</option>
+                            <option value=1280x720>1280 x 720</option>
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td>Camera Device</td>
+                        <td><input type=text value=/dev/video0 name=camera_device></td>
+                    </tr>
+                    <tr>
+                        <td>Audio Hardware Number</td>
+                        <td><input type=number value=1></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </body>
+</html>
