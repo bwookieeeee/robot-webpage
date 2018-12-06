@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset=UTF-8>
+        <link rel=stylesheet type=text/css href=index.css>
+
+    </head>
+    <body>
+        <div >
+            <h2>WiFi</h2>
+            <form>
+                <table>
+                    <tr>
+                        <td>Secret Key</td>
+                        <td><input type=password name=secret_key></td>
+                    </tr>
+                    <tr>
+                        <td>Auto Wifi</td>
+                        <td><input type=checkbox name=auto_wifi></td>
+                    </tr>
+                    <tr>
+                        <td>WPA Template</td>
+                        <td><textarea name=wpa_template rows=12 cols=60>
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+    update_config=1
+    country=GB
+    network={{
+        ssid=\"beepx\"
+        psk=\"yellow123\"
+        key_mgmt=WPA-PSK
+    }}
+    
+    network={{
+        ssid=\"{name}\"
+        psk=\"{password}\"
+        key_mgmt=WPA-PSK
+    }}</textarea></td>
+                    </tr>
+                    <tr>
+                        <td>Check Internet</td>
+                        <td><input type=checkbox name=check_internet checked></td>
+                    </tr>
+                    <tr>
+                        <td>Check Frequency</td>
+                        <td><input type=number value=120 min=0 name=check_freq></td>
+                    </tr>
+                    <tr>
+                        <td>Secure Cert</td>
+                        <td><input type=checkbox name=secure_cert checked></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </body>
+</html>

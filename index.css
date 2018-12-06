@@ -36,14 +36,14 @@ a:hover {
 
 #sidebar {
     float: left;
-    width: 15%;
+    width: 16%;
     margin-left: 5px;
     line-height: 1.5em; 
 }
 
 #content {
     float: right;
-    width: 84%;
+    width: 83%;
 }
 
 #content iframe {

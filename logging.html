@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset=UTF-8>
+        <link rel=stylesheet type=text/css href=index.css>
+
+    </head>
+    <body>
+        <div >
+            <h2>Logging</h2>
+            <form>
+                <table>
+                    <tr>
+                        <td>Log File</td>
+                        <td><input type=text value=letsrobot.log name=log_file></td>
+                    </tr>
+                    <tr>
+                        <td>File Level</td>
+                        <td><select>
+                            <option value=critical>CRITICAL</option>
+                            <option value=error>ERROR</option>
+                            <option value=warning selected>WARNING</option>
+                            <option value=info>INFO</option>
+                            <option value=debug>DEBUG</option>
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td>Console Level</td>
+                        <td><select>
+                                <option value=critical>CRITICAL</option>
+                                <option value=error selected>ERROR</option>
+                                <option value=warning>WARNING</option>
+                                <option value=info>INFO</option>
+                                <option value=debug>DEBUG</option>
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td>Max Size</td>
+                        <td><input type=number value=100000 step=1000 name=max_size></td>
+                    </tr>
+                    <tr>
+                        <td>Number of Backups</td>
+                        <td><input type=number value=2 step=1 min=0 name=num_backups></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </body>
+</html>
