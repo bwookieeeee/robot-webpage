@@ -4,17 +4,18 @@
 <head>
     <!--TODO make webpage name the hostname-->
     <title>Robot setup page</title>
-    <meta name=viewport content="width=device-width, initial-scale=1">
-    <meta charset=UTF-8>
-    <link rel=stylesheet type=text/css href=index.css>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 
 <body>
     <div id=header>
-            <img src=img/LetsLogo_RGB_512x100_Alpha3.png alt="Let's Robot" />
+            <img src="img/LetsLogo_RGB_512x100_Alpha3.png" alt="Let's Robot" />
             <h1>Robot Setup Page</h1>
         </div>
-    <div id=sidebar>
+    <!--<div id=sidebar>
         <a href=robot.html target=content-iframe>Robot</a><br>
         <a href=camera.html target=content-iframe>Camera</a><br>
         <a href=ffmpeg.html target=content-iframe>FFMPEG</a><br>
@@ -40,10 +41,88 @@
         <a href=logging.html target=content-iframe>Logging</a><br>
         <a href=misc.html target=content-iframe>Misc</a><br>
         <a href=wifi.html target=content-iframe>Wifi</a><br>
+    </div>-->
+    <script id="robot_type_display_selector">
+        $(document).ready(function() {
+            $('#robot_type_selector').on('change', function() {
+                var targetdiv = document.getElementById(this.value);
+                var divs = document.getElementsByClassName("robot_type");
+                
+                if (targetdiv.id === 'none') {
+                    for (var i = 0; i < divs.length; i++) {
+                        divs[i].style.display = 'none';
+                    }
+                    return;
+                } else {
+                    for (var i = 0; i < divs.length; i++) {
+                        if (divs[i] != targetdiv) {
+                            divs[i].style.display = 'none';
+                        } else {
+                            divs[i].style.display = 'block';
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+    <select id="robot_type_selector">
+        <option value="none" selected>None</option>
+        <option value="adafruit_pwm">Adafruit PWM</option>
+        <option value="cozmo">Cozmo</option>
+        <option value="gopigo2">GoPiGo2</option>
+        <option value="gopigo3">GoPiGo3</option>
+        <option value="l298n">L298N</option>
+        <option value="mc33926">MC33926</option>
+        <option value="motor_hat">Motor Hat</option>
+        <option value="motozero">Motozero</option>
+        <option value="owi_arm">OWI Arm</option>
+        <option value="pololu">Pololu</option>
+        <option value="serial">Serial</option>
+    </select>
+
+    <div id="none" class="robot_type" style="display: none"></div>
+    <div id="adafruit_pwm" class="robot_type" style="display: none">
+        <h2>Adafruit PWM</h2>
+        <form>
+            <table>
+                <tr>
+                    <td>Address</td>
+                    <td><input type="text" value="0x40" name="address"></td>
+                </tr>
+            </table>
+        </form>
     </div>
-    <div id=content>
-        <iframe name=content-iframe height=500px></iframe>
+    <div id="cozmo" class="robot_type" style="display: none">
+    
     </div>
+    <div id="gopigo2" class="robot_type" style="display: none">
+    
+    </div>
+    <div id="gopigo3" class="robot_type" style="display: none">
+    
+    </div>
+    <div id="l298n" class="robot_type" style="display: none">
+    
+    </div>
+    <div id="mc33926" class="robot_type" style="display: none">
+    
+    </div>
+    <div id="motor_hat" class="robot_type" style="display: none">
+    
+    </div>
+    <div id="motozero" class="robot_type" style="display: none">
+    
+    </div>
+    <div id="owi_arm" class="robot_type" style="display: none">
+    
+    </div>
+    <div id="pololu" class="robot_type" style="display: none">
+    
+    </div>
+    <div id="serial" class="robot_type" style="display: none">
+    
+    </div>
+    
     <footer>
         <a href="https://www.letsrobot.tv/">Let's Robot</a> |
         <a href="https://discord.gg/CpxUrk5">Discord</a> |
