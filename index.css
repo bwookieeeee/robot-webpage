@@ -34,22 +34,6 @@ a:hover {
     padding-right: 50px;
 }
 
-#sidebar {
-    float: left;
-    width: 150px;
-    margin-left: 5px;
-    line-height: 1.5em; 
-}
-
-#content {
-    float: right;
-    width: 83%;
-}
-
-#content iframe {
-    width: 100%;
-    border: none;
-}
 
 footer {
     position: fixed;
