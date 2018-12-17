@@ -1,8 +1,8 @@
-$(document).ready(function() {
-    $('#robot_type_selector').on('change', function() {
+$(document).ready(function () {
+    $('#robot_type_selector').on('change', function () {
         var targetdiv = document.getElementById(this.value);
         var divs = document.getElementsByClassName("robot_type");
-        
+
         if (targetdiv.id === 'none') {
             for (var i = 0; i < divs.length; i++) {
                 divs[i].style.display = 'none';
@@ -19,7 +19,7 @@ $(document).ready(function() {
         }
     });
 
-    $('#camera_type_selector').on('change', function() {
+    $('#camera_type_selector').on('change', function () {
         var targetdiv = document.getElementById(this.value);
         var divs = document.getElementsByClassName("camera_type");
 
@@ -39,7 +39,7 @@ $(document).ready(function() {
         }
     });
 
-    $('#tts_type_selector').on('change', function() {
+    $('#tts_type_selector').on('change', function () {
         var targetdiv = document.getElementById(this.value);
         var divs = document.getElementsByClassName("tts_type");
 

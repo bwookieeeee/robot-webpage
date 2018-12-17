@@ -15,10 +15,31 @@
         <img src="img/LetsLogo_RGB_512x100_Alpha3.png" alt="Let's Robot" />
         <h1>Robot Setup Page</h1>
     </div>
-    <script id="robot_type_display_selector" src="scripts/index.js"></script>
+    <script src="scripts/index.js"></script>
 
     <div class="tab">
-        <button class="tablinks" onclick="openTab(event, 'robot')">Robot</button>
+        <script>
+            function openTab(evt, tabName) {
+                // Declare all variables
+                var i, tabcontent, tablinks;
+
+                // Get all elements with class="tabcontent" and hide them
+                tabcontent = document.getElementsByClassName("tabcontent");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
+
+                document.getElementById(tabName).style.display = "block";
+
+                // Show the current tab, and add an active class to the button that opened
+                // the tab
+                document.getElementById(tabName).style.display = "block";
+                evt.currentTarget.className += " active";
+
+            }    
+            document.getElementById("defaultOpen").click();
+        </script>
+        <button class="tablinks" onclick="openTab(event, 'robot')" id="defaultOpen">Robot</button>
         <button class="tablinks" onclick="openTab(event, 'camera')">Camera</button>
         <button class="tablinks" onclick="openTab(event, 'tts')">TTS</button>
         <button class="tablinks" onclick="openTab(event, 'messenger')">Messenger</button>

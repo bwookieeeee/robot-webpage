@@ -52,6 +52,13 @@ a:hover {
     height: 45px;
     color: white;
     font-weight: bold;
+    cursor: pointer;
+}
+
+.tabcontent {
+    margin: auto;
+    height: 100%;
+    display: none;
 }
 
 footer {
