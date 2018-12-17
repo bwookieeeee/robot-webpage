@@ -13,7 +13,7 @@ $(document).ready(function () {
                 if (divs[i] != targetdiv) {
                     divs[i].style.display = 'none';
                 } else {
-                    divs[i].style.display = 'block';
+                    divs[i].style.display = 'flex';
                 }
             }
         }
@@ -33,7 +33,7 @@ $(document).ready(function () {
                 if (divs[i] != targetdiv) {
                     divs[i].style.display = 'none';
                 } else {
-                    divs[i].style.display = 'block';
+                    divs[i].style.display = 'flex';
                 }
             }
         }
@@ -53,7 +53,7 @@ $(document).ready(function () {
                 if (divs[i] != targetdiv) {
                     divs[i].style.display = 'none';
                 } else {
-                    divs[i].style.display = 'block';
+                    divs[i].style.display = 'flex';
                 }
             }
         }

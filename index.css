@@ -3,6 +3,7 @@ body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     margin: 0;
     color: white;
+    /*min-width: 500px;*/
 }
 
 a {
@@ -38,6 +39,16 @@ a:hover {
     background-color: #a952b2;
     align-items: center;
     justify-content: center;
+    width: 100%;
+}
+
+#buttons {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    position: relative;
+    justify-content: center;
+    align-items: center;
 }
 
 .tablinks {
@@ -53,16 +64,33 @@ a:hover {
     color: white;
     font-weight: bold;
     cursor: pointer;
+    max-width: 200px;
 }
 
 .tabcontent {
+    width: 100%;
+    display: none;
+    flex-direction: column;
     margin: auto;
     height: 100%;
-    display: none;
+    align-items: center;
+}
+
+
+td {
+    width: 50%;
+}
+
+input {
+    width: 100%;
+}
+
+select {
+    width: 100%;
 }
 
 footer {
-    position: fixed;
+    position: absolute;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -74,4 +102,5 @@ footer {
     #header h1 {
         display: none;
     }
+
 }
