@@ -609,6 +609,134 @@
             <p>There's nothing to change here yet...</p>
         </div>
     </div>
+    <div id="logging">
+        <h1>Logging</h1>
+        <form>
+            <table>
+                <tr>
+                    <td>Log File</td>
+                    <td><input type=text value=letsrobot.log name=log_file></td>
+                </tr>
+                <tr>
+                    <td>File Level</td>
+                    <td><select>
+                            <option value=critical>CRITICAL</option>
+                            <option value=error>ERROR</option>
+                            <option value=warning selected>WARNING</option>
+                            <option value=info>INFO</option>
+                            <option value=debug>DEBUG</option>
+                        </select></td>
+                </tr>
+                <tr>
+                    <td>Console Level</td>
+                    <td><select>
+                            <option value=critical>CRITICAL</option>
+                            <option value=error selected>ERROR</option>
+                            <option value=warning>WARNING</option>
+                            <option value=info>INFO</option>
+                            <option value=debug>DEBUG</option>
+                        </select></td>
+                </tr>
+                <tr>
+                    <td>Max Size</td>
+                    <td><input type=number value=100000 step=1000 name=max_size></td>
+                </tr>
+                <tr>
+                    <td>Number of Backups</td>
+                    <td><input type=number value=2 step=1 min=0 name=num_backups></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div id="misc">
+        <h1>Misc</h1>
+        <form>
+            <table>
+                <tr>
+                    <td>Custom Hardware</td>
+                    <td><input type=checkbox name=custom_hardware checked></td>
+                </tr>
+                <tr>
+                    <td>Custom TTS</td>
+                    <td><input type=checkbox name=custom_tts checked></td>
+                </tr>
+                <tr>
+                    <td>Custom Chat</td>
+                    <td><input type=checkbox name=custom_chat checked></td>
+                </tr>
+                <tr>
+                    <td>Custom Video</td>
+                    <td><input type=checkbox name=custom_video checked></td>
+                </tr>
+                <tr>
+                    <td>Watchdog</td>
+                    <td><input type=checkbox name=watchdog checked></td>
+                </tr>
+                <tr>
+                    <td>Enable Async</td>
+                    <td><input type=checkbox name=enable_async></td>
+                </tr>
+                <tr>
+                    <td>Disable Chat Server</td>
+                    <td><input type=checkbox name=no_chat_server></td>
+                </tr>
+                <tr>
+                    <td>Server Override</td>
+                    <td><input type=checkbox name=server_override></td>
+                </tr>
+                <tr>
+                    <td>Info Server</td>
+                    <td><input type=text value=letsrobot.tv name=info_server></td>
+                </tr>
+                <tr>
+                    <td>API Server</td>
+                    <td><input type=text value=api.letsrobot.tv name=api_server></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div id="wifi">
+        <h2>WiFi</h2>
+        <form>
+            <table>
+                <tr>
+                    <td>Auto Wifi</td>
+                    <td><input type=checkbox name=auto_wifi></td>
+                </tr>
+                <tr>
+                    <td>WPA Template</td>
+                    <!--This looks weird but trust me it's needed to get it to look right on the page.-->
+                    <td><textarea name=wpa_template rows=12 cols=60>
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+    update_config=1
+    country=GB
+    network={{
+        ssid=\"beepx\"
+        psk=\"yellow123\"
+        key_mgmt=WPA-PSK
+    }}
+    
+    network={{
+        ssid=\"{name}\"
+        psk=\"{password}\"
+        key_mgmt=WPA-PSK
+    }}</textarea></td>
+                </tr>
+                <tr>
+                    <td>Check Internet</td>
+                    <td><input type=checkbox name=check_internet checked></td>
+                </tr>
+                <tr>
+                    <td>Check Frequency</td>
+                    <td><input type=number value=120 min=0 name=check_freq></td>
+                </tr>
+                <tr>
+                    <td>Secure Cert</td>
+                    <td><input type=checkbox name=secure_cert checked></td>
+                </tr>
+            </table>
+        </form>
+    </div>
     <footer>
         <a href="https://www.letsrobot.tv/">Let's Robot</a> |
         <a href="https://discord.gg/CpxUrk5">Discord</a> |
