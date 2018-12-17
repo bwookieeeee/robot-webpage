@@ -15,7 +15,7 @@
         <img src="img/LetsLogo_RGB_512x100_Alpha3.png" alt="Let's Robot" />
         <h1>Robot Setup Page</h1>
     </div>
-    
+
     <script id="robot_type_display_selector">
         $(document).ready(function() {
             $('#robot_type_selector').on('change', function() {
@@ -41,6 +41,26 @@
             $('#camera_type_selector').on('change', function() {
                 var targetdiv = document.getElementById(this.value);
                 var divs = document.getElementsByClassName("camera_type");
+
+                if (targetdiv.id === 'none') {
+                    for (var i = 0; i < divs.length; i++) {
+                        divs[i].style.display = 'none';
+                    }
+                    return;
+                } else {
+                    for (var i = 0; i < divs.length; i++) {
+                        if (divs[i] != targetdiv) {
+                            divs[i].style.display = 'none';
+                        } else {
+                            divs[i].style.display = 'block';
+                        }
+                    }
+                }
+            });
+
+            $('#tts_type_selector').on('change', function() {
+                var targetdiv = document.getElementById(this.value);
+                var divs = document.getElementsByClassName("tts_type");
 
                 if (targetdiv.id === 'none') {
                     for (var i = 0; i < divs.length; i++) {
@@ -445,95 +465,154 @@
             <!--Javascript doesn't like it when this div isn't here.-->
         </div>
         <div id="ffmpeg" class="camera_type" style="display: none">
-                <h2>FFMPEG</h2>
-                <form>
-                    <table>
-                        <tr>
-                            <td>FFMPEG Location</td>
-                            <td><input type=text value=/usr/bin/ffmpeg name=ffmpeg_location></td>
-                        </tr>
-                        <tr>
-                            <td>v4l2-ctl Location</td>
-                            <td><input type=text value=/usr/bin/v4l2-ctl name=v4l2-ctl_location></td>
-                        </tr>
-                        <tr>
-                            <td>Audio Codec</td>
-                            <td><select>
+            <h2>FFMPEG</h2>
+            <form>
+                <table>
+                    <tr>
+                        <td>FFMPEG Location</td>
+                        <td><input type=text value=/usr/bin/ffmpeg name=ffmpeg_location></td>
+                    </tr>
+                    <tr>
+                        <td>v4l2-ctl Location</td>
+                        <td><input type=text value=/usr/bin/v4l2-ctl name=v4l2-ctl_location></td>
+                    </tr>
+                    <tr>
+                        <td>Audio Codec</td>
+                        <td><select>
                                 <option value=mp2>MP2</option>
                             </select></td>
-                        </tr>
-                        <tr>
-                            <td>Audio Channels</td>
-                            <td><input type=number value=1></td>
-                        </tr>
-                        <tr>
-                            <td>Audio Bitrate</td>
-                            <td><input type=number value=44100></td>
-                        </tr>
-                        <tr>
-                            <td>Video Codec</td>
-                            <td><select>
+                    </tr>
+                    <tr>
+                        <td>Audio Channels</td>
+                        <td><input type=number value=1></td>
+                    </tr>
+                    <tr>
+                        <td>Audio Bitrate</td>
+                        <td><input type=number value=44100></td>
+                    </tr>
+                    <tr>
+                        <td>Video Codec</td>
+                        <td><select>
                                 <option value=mpeg1video>mpeg1video</option>
                             </select></td>
-                        </tr>
-                        <tr>
-                            <td>Video Bitrate</td>
-                            <td><input type=number value=350 name=video_bitrate></td>
-                        </tr>
-                        <tr>
-                            <td>Audio Input Format</td>
-                            <td><select>
+                    </tr>
+                    <tr>
+                        <td>Video Bitrate</td>
+                        <td><input type=number value=350 name=video_bitrate></td>
+                    </tr>
+                    <tr>
+                        <td>Audio Input Format</td>
+                        <td><select>
                                 <option value=alsa>alsa</option>
                             </select></td>
-                        </tr>
-                        <tr>
-                            <td>Audio Input Options</td>
-                            <td><input type=text name=audio_input_options></td>
-                        </tr>
-                        <tr>
-                            <td>Audio Output Options</td>
-                            <td><input type=text name=audio_output_options value="-nostats"></td>
-                        </tr>
-                        <tr>
-                            <td>Video Input Format</td>
-                            <td><select>
+                    </tr>
+                    <tr>
+                        <td>Audio Input Options</td>
+                        <td><input type=text name=audio_input_options></td>
+                    </tr>
+                    <tr>
+                        <td>Audio Output Options</td>
+                        <td><input type=text name=audio_output_options value="-nostats"></td>
+                    </tr>
+                    <tr>
+                        <td>Video Input Format</td>
+                        <td><select>
                                 <option value=v4l2>v4l2</option>
                             </select></td>
-                        </tr>
-                        <tr>
-                            <td>Video Input Options</td>
-                            <td><input type=text name=video_input_options></td>
-                        </tr>
-                        <tr>
-                            <td>Video Output Options</td>
-                            <td><input type=text name=video_output_options value="-nostats -threads 2"></td>
-                        </tr>
-                    </table>
-                </form>
+                    </tr>
+                    <tr>
+                        <td>Video Input Options</td>
+                        <td><input type=text name=video_input_options></td>
+                    </tr>
+                    <tr>
+                        <td>Video Output Options</td>
+                        <td><input type=text name=video_output_options value="-nostats -threads 2"></td>
+                    </tr>
+                </table>
+            </form>
         </div>
         <div id="ffmpeg_arecord" class="camera_type" style="display: none">
-                <h2>FFMPEG-arecord</h2>
-                <form>
-                    <table>
-                        <tr>
-                            <td>arecord path</td>
-                            <td><input type=text value=/usr/bin/arecord name=arecord_path></td>
-                        </tr>
-                        <tr>
-                            <td>arecord format</td>
-                            <td><select>
+            <h2>FFMPEG-arecord</h2>
+            <form>
+                <table>
+                    <tr>
+                        <td>arecord path</td>
+                        <td><input type=text value=/usr/bin/arecord name=arecord_path></td>
+                    </tr>
+                    <tr>
+                        <td>arecord format</td>
+                        <td><select>
                                 <option value=s16_le>S16_LE</option>
                             </select></td>
-                        </tr>
-                    </table>
-                </form>
+                    </tr>
+                </table>
+            </form>
         </div>
     </div>
-
+    <div id="tts">
+        <h1>TTS</h1>
+        <form>
+            <table>
+                <tr>
+                    <td>Type</td>
+                    <td><select id="tts_type_selector">
+                            <option value=espeak>espeak</option>
+                            <option value=festival>festival</option>
+                            <option value=none>none</option>
+                        </select></td>
+                </tr>
+                <tr>
+                    <td>Volume</td>
+                    <td><input type=number value=80 step=5></td>
+                </tr>
+                <tr>
+                    <td>anon tts</td>
+                    <td><input type=checkbox name=anon_tts checked></td>
+                </tr>
+                <tr>
+                    <td>Filter URLs</td>
+                    <td><input type=checkbox name=filter_urls checked></td>
+                </tr>
+                <tr>
+                    <td>Extended Chat</td>
+                    <td><input type=checkbox name=ext_chat checked></td>
+                </tr>
+                <tr>
+                    <td>speaker hardware number</td>
+                    <td><input type=number value=1></td>
+                </tr>
+            </table>
+        </form>
+        <div id="none" class="tts_type" style="display: none">
+            <!--Javascript doesn't like it when this div isn't here.-->
+        </div>
+        <div id="espeak" class="tts_type" style="display: none">
+            <h2>espeak</h2>
+            <form>
+                <table>
+                    <tr>
+                        <td>Voice gender</td>
+                        <td><select>
+                                <option value="male" selected>Male</option>
+                                <option value="female">Female</option>
+                            </select></td>
+                    </tr>
+                    <tr>
+                        <td>Voice Number</td>
+                        <td><input type=number value=1 name=voice_number></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div id="festival" class="tts_type" style="display: none">
+            <h2>Festival</h2>
+            <p>There's nothing to change here yet...</p>
+        </div>
+    </div>
     <footer>
         <a href="https://www.letsrobot.tv/">Let's Robot</a> |
         <a href="https://discord.gg/CpxUrk5">Discord</a> |
-        <a href="https://twitter.com">Twitter</a> |
+        <a href="https://twitter.com/letsrobot">Twitter</a> |
         <a href="https://github.com/letsrobot/letsrobot">GitHub</a>
     </footer>
 </body>
