@@ -34,6 +34,25 @@ a:hover {
     padding-right: 50px;
 }
 
+.tab {
+    background-color: #a952b2;
+    align-items: center;
+    justify-content: center;
+}
+
+.tablinks {
+    background-color: #a952b2;
+    outline: currentColor none medium;
+    position: relative;
+    font-size: 15px;
+    border: none;
+    z-index: 1000;
+    padding-left: 6px;
+    padding-right: 6px;
+    height: 45px;
+    color: white;
+    font-weight: bold;
+}
 
 footer {
     position: fixed;

@@ -15,10 +15,18 @@
         <img src="img/LetsLogo_RGB_512x100_Alpha3.png" alt="Let's Robot" />
         <h1>Robot Setup Page</h1>
     </div>
-
     <script id="robot_type_display_selector" src="scripts/index.js"></script>
 
-    <div id="robot">
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'robot')">Robot</button>
+        <button class="tablinks" onclick="openTab(event, 'camera')">Camera</button>
+        <button class="tablinks" onclick="openTab(event, 'tts')">TTS</button>
+        <button class="tablinks" onclick="openTab(event, 'messenger')">Messenger</button>
+        <button class="tablinks" onclick="openTab(event, 'logging')">Logging</button>
+        <button class="tablinks" onclick="openTab(event, 'misc')">Misc</button>
+        <button class="tablinks" onclick="openTab(event, 'wifi')">WiFi</button>
+    </div>
+    <div id="robot" class="tabcontent">
         <h1>Robot</h1>
         <form>
             <table>
@@ -362,7 +370,7 @@
             </form>
         </div>
     </div>
-    <div id="camera">
+    <div id="camera" class="tabcontent">
         <h1>Camera</h1>
         <form>
             <table>
@@ -487,7 +495,7 @@
             </form>
         </div>
     </div>
-    <div id="tts">
+    <div id="tts" class="tabcontent">
         <h1>TTS</h1>
         <form>
             <table>
@@ -547,7 +555,7 @@
             <p>There's nothing to change here yet...</p>
         </div>
     </div>
-    <div id="messenger">
+    <div id="messenger" class="tabcontent">
         <h1>Messenger</h1>
         <form>
             <table>
@@ -578,7 +586,7 @@
             </table>
         </form>
     </div>
-    <div id="logging">
+    <div id="logging" class="tabcontent">
         <h1>Logging</h1>
         <form>
             <table>
@@ -617,7 +625,7 @@
             </table>
         </form>
     </div>
-    <div id="misc">
+    <div id="misc" class="tabcontent">
         <h1>Misc</h1>
         <form>
             <table>
@@ -664,7 +672,7 @@
             </table>
         </form>
     </div>
-    <div id="wifi">
+    <div id="wifi" class="tabcontent">
         <h2>WiFi</h2>
         <form>
             <table>
