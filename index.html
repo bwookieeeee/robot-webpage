@@ -15,33 +15,7 @@
         <img src="img/LetsLogo_RGB_512x100_Alpha3.png" alt="Let's Robot" />
         <h1>Robot Setup Page</h1>
     </div>
-    <!--<div id=sidebar>
-        <a href=robot.html target=content-iframe>Robot</a><br>
-        <a href=camera.html target=content-iframe>Camera</a><br>
-        <a href=ffmpeg.html target=content-iframe>FFMPEG</a><br>
-        <a href=ffmpeg-arecord.html target=content-iframe>FFMPEG Arecord</a><br>
-        <a href=tts.html target=content-iframe>TTS</a><br>
-        <a href=espeak.html target=content-iframe>ESpeak</a><br>
-        <a href=festival.html target=content-iframe>Festival</a><br>
-        <a href=pico.html target=content-iframe>Pico</a><br>
-        <a href=polly.html target=content-iframe>Polly</a><br>
-        <a href=cozmo.html target=content-iframe>Cozmo</a><br>
-        <a href=adafruit_pwm.html target=content-iframe>Adafruit PWM</a><br>
-        <a href=owi_arm.html target=content-iframe>OWI Arm</a><br>
-        <a href=serial.html target=content-iframe>Serial</a><br>
-        <a href=motor_hat.html target=content-iframe>Motor Hat</a><br>
-        <a href=gopigo2.html target=content-iframe>GoPiGo2</a><br>
-        <a href=gopigo3.html target=content-iframe>GoPiGo3</a><br>
-        <a href=l298n.html target=content-iframe>L298N</a><br>
-        <a href=motozero.html target=content-iframe>motozero</a><br>
-        <a href=pololu.html target=content-iframe>pololu</a><br>
-        <a href=mc33926.html target=content-iframe>MC33926</a><br>
-        <a href=max7219.html target=content-iframe>MAX7219</a><br>
-        <a href=messenger.html target=content-iframe>Messenger</a><br>
-        <a href=logging.html target=content-iframe>Logging</a><br>
-        <a href=misc.html target=content-iframe>Misc</a><br>
-        <a href=wifi.html target=content-iframe>Wifi</a><br>
-    </div>-->
+    
     <script id="robot_type_display_selector">
         $(document).ready(function() {
             $('#robot_type_selector').on('change', function() {
@@ -63,312 +37,419 @@
                     }
                 }
             });
+
+            $('#camera_type_selector').on('change', function() {
+                var targetdiv = document.getElementById(this.value);
+                var divs = document.getElementsByClassName("camera_type");
+
+                if (targetdiv.id === 'none') {
+                    for (var i = 0; i < divs.length; i++) {
+                        divs[i].style.display = 'none';
+                    }
+                    return;
+                } else {
+                    for (var i = 0; i < divs.length; i++) {
+                        if (divs[1] != targetdiv) {
+                            divs[i].style.display = 'none';
+                        } else {
+                            divs[i].style.display = 'block';
+                        }
+                    }
+                }
+            });
         });
     </script>
-    <form>
-        Robot Type: 
-        <select id="robot_type_selector">
-            <option value="none" selected>None</option>
-            <option value="adafruit_pwm">Adafruit PWM</option>
-            <option value="cozmo">Cozmo</option>
-            <option value="gopigo2">GoPiGo2</option>
-            <option value="gopigo3">GoPiGo3</option>
-            <option value="l298n">L298N</option>
-            <option value="mc33926">MC33926</option>
-            <option value="motor_hat">Motor Hat</option>
-            <option value="motozero">Motozero</option>
-            <option value="owi_arm">OWI Arm</option>
-            <option value="pololu">Pololu</option>
-            <option value="serial">Serial</option>
-        </select>
-    </form>
 
-    <div id="none" class="robot_type" style="display: none"></div>
-    <div id="adafruit_pwm" class="robot_type" style="display: none">
-        <h2>Adafruit PWM</h2>
+    <div id="robot">
+        <h1>Robot</h1>
         <form>
             <table>
                 <tr>
-                    <td>Address</td>
-                    <td><input type="text" value="0x40" name="address"></td>
+                    <td>Owner</td>
+                    <td><input type="text" name="owner"></td>
                 </tr>
                 <tr>
-                    <td>PWM Frequency</td>
-                    <td><input type=number value=60></td>
+                    <td>Robot ID</td>
+                    <td><input type="text" name="robot_id"></td>
                 </tr>
                 <tr>
-                    <td>More Debug</td>
-                    <td><input type=checkbox name=more_debug></td>
-                </tr>
-            </table>
-        </form>
-    </div>
-    <div id="cozmo" class="robot_type" style="display: none">
-        <h2>Cozmo</h2>
-        <form>
-            <table>
-                <tr>
-                    <td>Forward speed</td>
-                    <td><input type=number value=75 step=5></td>
+                    <td>Camera ID</td>
+                    <td><input type="text" name="camera_id"></td>
                 </tr>
                 <tr>
-                    <td>Turn speed</td>
-                    <td><input type=number value=50 step=5></td>
-                </tr>
-                <tr>
-                    <td>Volume</td>
-                    <td><input type=number value=100 step=5></td>
-                </tr>
-                <tr>
-                    <td>Charge high</td>
-                    <td><input type=number value=4.79 step=0.01></td>
-                </tr>
-                <tr>
-                    <td>Charge low</td>
-                    <td><input type=number value=3.60 step=0.01></td>
-                </tr>
-                <tr>
-                    <td>Send online status</td>
-                    <td><input type=checkbox name=send_online checked></td>
-                </tr>
-                <tr>
-                    <td>Stay on dock</td>
-                    <td><input type=checkbox name=stay_on_dock checked></td>
-                </tr>
-                <tr>
-                    <td>Annotated</td>
-                    <td><input type=checkbox name=annotated></td>
-                </tr>
-                <tr>
-                    <td>Colorized</td>
-                    <td><input type=checkbox name=colorized></td>
-                </tr>
-            </table>
-        </form>
-    </div>
-    <div id="gopigo2" class="robot_type" style="display: none">
-        <h2>GoPiGo2</h2>
-        <form>
-            <table>
-                <tr>
-                    <td>Drive Time</td>
-                    <td><input type=number value=0.35 step=0.05 name=drive_time></td>
-                </tr>
-                <tr>
-                    <td>Turn Time</td>
-                    <td><input type=number value=0.15 step=0.05 name=turn_time></td>
-                </tr>
-            </table>
-        </form>
-    </div>
-    <div id="gopigo3" class="robot_type" style="display: none">
-        <h2>GoPiGo3</h2>
-        <form>
-            <table>
-                <tr>
-                    <td>Drive Time</td>
-                    <td><input type=number value=0.35 step=0.05 name=drive_time></td>
-                </tr>
-                <tr>
-                    <td>Turn Time</td>
-                    <td><input type=number value=0.15 step=0.05 name=turn_time></td>
-                </tr>
-            </table>
-        </form>
-    </div>
-    <div id="l298n" class="robot_type" style="display: none">
-        <h2>L298N</h2>
-        <form>
-            <table>
-                <tr>
-                    <td>Step Pin Forward</td>
-                    <td><input type=text value=12,16 name=step_pin_foward></td>
-                </tr>
-                <tr>
-                    <td>Step Pin Backward</td>
-                    <td><input type=text value=11,15 name=step_pin_backward></td>
-                </tr>
-                <tr>
-                    <td>Step Pin Left</td>
-                    <td><input type=text value=15,12 name=step_pin_left></td>
-                </tr>
-                <tr>
-                    <td>Step Pin Right</td>
-                    <td><input type=text value=11,16 name=step_pin_right></td>
-                </tr>
-                <tr>
-                    <td>Sleep time</td>
-                    <td><input type=number value=0.2 step=0.1 name=sleep_time></td>
-                </tr>
-                <tr>
-                    <td>Rotate Times</td>
-                    <td><input type=number value=5 name=rotate_times></td>
-                </tr>
-            </table>
-        </form>
-    </div>
-    <div id="mc33926" class="robot_type" style="display: none">
-        <h2>MC33926</h2>
-        <form>
-            <table>
-                <tr>
-                    <td>Driving Speed</td>
-                    <td><input type=number value=180 name=driving_speed></td>
-                </tr>
-            </table>
-        </form>
-    </div>
-    <div id="motor_hat" class="robot_type" style="display: none">
-        <h2>Motor Hat</h2>
-        <form>
-            <table>
-                <tr>
-                    <td>Day Speed</td>
-                    <td><input type=number value=255 max=255 min=0 name=day_speed></td>
-                </tr>
-                <tr>
-                    <td>Night Speed</td>
-                    <td><input type=number value=255 max=255 min=0 name=night_speed></td>
-                </tr>
-                <tr>
-                    <td>Turning Speed</td>
-                    <td><input type=number value=250 max=255 min=0 name=turning_speed></td>
-                </tr>
-                <tr>
-                    <td>Forward</td>
-                    <td><input type=text value=[-1,1,-1,1] name=forward></td>
-                </tr>
-                <tr>
-                    <td>Left</td>
-                    <td><input type=text value=[1,1,1,1] name=left></td>
-                </tr>
-                <tr>
-                    <td>Slow for low battery</td>
-                    <td><input type=checkbox name=slow_for_low_battery></td>
-                </tr>
-                <tr>
-                    <td>Charge Hours</td>
-                    <td><input type=number value=3.0 step=0.1 name=charge_hours></td>
-                </tr>
-                <tr>
-                    <td>Discharge Hours</td>
-                    <td><input type=number value=8.0 step=0.1 name=discharge_hours></td>
-                </tr>
-                <tr>
-                    <td>Charge Check Interval</td>
-                    <td><input type=number value=5 name=charge_check_interval></td>
-                </tr>
-                <tr>
-                    <td>Charge IO Number</td>
-                    <td><input type=number value=17 name=charge_io_number></td>
-                </tr>
-            </table>
-        </form>
-    </div>
-    <div id="motozero" class="robot_type" style="display: none">
-        <h2>Motozero</h2>
-        <form>
-            <table>
-                <tr>
-                    <td>Motor Delay</td>
-                    <td><input type=number value=0.3 step=0.1 name=motor_delay></td>
-                </tr>
-                <tr>
-                    <td>Motor 1A</td>
-                    <td><input type=number value=24 name=motor_1a></td>
-                </tr>
-                <tr>
-                    <td>Motor 1B</td>
-                    <td><input type=number value=24 name=motor_1b></td>
-                </tr>
-                <tr>
-                    <td>Motor 1 Enable</td>
-                    <td><input type=number value=5 name=motor_1_enable></td>
-                </tr>
-                <tr>
-                    <td>Motor 2A</td>
-                    <td><input type=number value=24 name=motor_2a></td>
-                </tr>
-                <tr>
-                    <td>Motor 2B</td>
-                    <td><input type=number value=24 name=motor_2b></td>
-                </tr>
-                <tr>
-                    <td>Motor 2 Enable</td>
-                    <td><input type=number value=17 name=motor_2_enable></td>
-                </tr>
-                <tr>
-                    <td>Motor 3A</td>
-                    <td><input type=number value=24 name=motor_3a></td>
-                </tr>
-                <tr>
-                    <td>Motor 3B</td>
-                    <td><input type=number value=24 name=motor_3b></td>
-                </tr>
-                <tr>
-                    <td>Motor 3 Enable</td>
-                    <td><input type=number value=12 name=motor_3_enable></td>
-                </tr>
-                <tr>
-                    <td>Motor 4A</td>
-                    <td><input type=number value=24 name=motor_4a></td>
-                </tr>
-                <tr>
-                    <td>Motor 4B</td>
-                    <td><input type=number value=24 name=motor_4b></td>
-                </tr>
-                <tr>
-                    <td>Motor 4 Enable</td>
-                    <td><input type=number value=25 name=motor_4_enable></td>
-                </tr>
-
-            </table>
-        </form>
-    </div>
-    <div id="owi_arm" class="robot_type" style="display: none">
-        <h2>OWI Arm</h2>
-        <p>There's nothing here yet...</p>
-    </div>
-    <div id="pololu" class="robot_type" style="display: none">
-        <h2>Pololu</h2>
-        <form>
-            <table>
-                <tr>
-                    <td>Driving Speed</td>
-                    <td><input type=number value=90 name=driving_speed></td>
-                </tr>
-            </table>
-        </form>
-    </div>
-    <div id="serial" class="robot_type" style="display: none">
-        <h2>Serial</h2>
-        <form>
-            <table>
-                <tr>
-                    <td>Serial Device</td>
-                    <td><input type=text value=/dev/ttyACM0 name=serial_device></td>
-                </tr>
-                <tr>
-                    <td>Baud Rate</td>
-                    <td><select>
-                            <option value=110>110</option>
-                            <option value=300>300</option>
-                            <option value=600>600</option>
-                            <option value=1200>1200</option>
-                            <option value=2400>2400</option>
-                            <option value=4800>4800</option>
-                            <option value=9600 selected>9600</option>
-                            <option value=14400>14400</option>
-                            <option value=19200>19200</option>
-                            <option value=38400>38400</option>
-                            <option value=57600>57600</option>
-                            <option value=115200>115200</option>
-                            <option value=128000>128000</option>
-                            <option value=256000>256000</option>
+                    <td>Type</td>
+                    <td><select id="robot_type_selector">
+                            <option value="none" selected>None</option>
+                            <option value="adafruit_pwm">Adafruit PWM</option>
+                            <option value="cozmo">Cozmo</option>
+                            <option value="gopigo2">GoPiGo2</option>
+                            <option value="gopigo3">GoPiGo3</option>
+                            <option value="l298n">L298N</option>
+                            <option value="mc33926">MC33926</option>
+                            <option value="motor_hat">Motor Hat</option>
+                            <option value="motozero">Motozero</option>
+                            <option value="owi_arm">OWI Arm</option>
+                            <option value="pololu">Pololu</option>
+                            <option value="serial">Serial</option>
                         </select></td>
                 </tr>
+                <tr>
+                    <td>Stream Key</td>
+                    <td><input type="password" name="stream_key"></td>
+                </tr>
+                <tr>
+                    <td>API Key</td>
+                    <td><input type="password" name="api_key"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">The following data is only used for motor_hat and mdd10</td>
+                </tr>
+                <tr>
+                    <td>Turn Delay</td>
+                    <td><input type="number" step="0.1" value="0.4" name="turn_delay"></td>
+                </tr>
+                <tr>
+                    <td>Straight Delay</td>
+                    <td><input type="number" step="0.1" value="0.5" name="straight_delay"></td>
+                </tr>
             </table>
         </form>
+        <div id="none" class="robot_type" style="display: none">
+            <!--Javascript doesn't like it when this div isn't here.-->
+        </div>
+        <div id="adafruit_pwm" class="robot_type" style="display: none">
+            <h2>Adafruit PWM</h2>
+            <form>
+                <table>
+                    <tr>
+                        <td>Address</td>
+                        <td><input type="text" value="0x40" name="address"></td>
+                    </tr>
+                    <tr>
+                        <td>PWM Frequency</td>
+                        <td><input type=number value=60></td>
+                    </tr>
+                    <tr>
+                        <td>More Debug</td>
+                        <td><input type=checkbox name=more_debug></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div id="cozmo" class="robot_type" style="display: none">
+            <h2>Cozmo</h2>
+            <form>
+                <table>
+                    <tr>
+                        <td>Forward speed</td>
+                        <td><input type=number value=75 step=5></td>
+                    </tr>
+                    <tr>
+                        <td>Turn speed</td>
+                        <td><input type=number value=50 step=5></td>
+                    </tr>
+                    <tr>
+                        <td>Volume</td>
+                        <td><input type=number value=100 step=5></td>
+                    </tr>
+                    <tr>
+                        <td>Charge high</td>
+                        <td><input type=number value=4.79 step=0.01></td>
+                    </tr>
+                    <tr>
+                        <td>Charge low</td>
+                        <td><input type=number value=3.60 step=0.01></td>
+                    </tr>
+                    <tr>
+                        <td>Send online status</td>
+                        <td><input type=checkbox name=send_online checked></td>
+                    </tr>
+                    <tr>
+                        <td>Stay on dock</td>
+                        <td><input type=checkbox name=stay_on_dock checked></td>
+                    </tr>
+                    <tr>
+                        <td>Annotated</td>
+                        <td><input type=checkbox name=annotated></td>
+                    </tr>
+                    <tr>
+                        <td>Colorized</td>
+                        <td><input type=checkbox name=colorized></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div id="gopigo2" class="robot_type" style="display: none">
+            <h2>GoPiGo2</h2>
+            <form>
+                <table>
+                    <tr>
+                        <td>Drive Time</td>
+                        <td><input type=number value=0.35 step=0.05 name=drive_time></td>
+                    </tr>
+                    <tr>
+                        <td>Turn Time</td>
+                        <td><input type=number value=0.15 step=0.05 name=turn_time></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div id="gopigo3" class="robot_type" style="display: none">
+            <h2>GoPiGo3</h2>
+            <form>
+                <table>
+                    <tr>
+                        <td>Drive Time</td>
+                        <td><input type=number value=0.35 step=0.05 name=drive_time></td>
+                    </tr>
+                    <tr>
+                        <td>Turn Time</td>
+                        <td><input type=number value=0.15 step=0.05 name=turn_time></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div id="l298n" class="robot_type" style="display: none">
+            <h2>L298N</h2>
+            <form>
+                <table>
+                    <tr>
+                        <td>Step Pin Forward</td>
+                        <td><input type=text value=12,16 name=step_pin_foward></td>
+                    </tr>
+                    <tr>
+                        <td>Step Pin Backward</td>
+                        <td><input type=text value=11,15 name=step_pin_backward></td>
+                    </tr>
+                    <tr>
+                        <td>Step Pin Left</td>
+                        <td><input type=text value=15,12 name=step_pin_left></td>
+                    </tr>
+                    <tr>
+                        <td>Step Pin Right</td>
+                        <td><input type=text value=11,16 name=step_pin_right></td>
+                    </tr>
+                    <tr>
+                        <td>Sleep time</td>
+                        <td><input type=number value=0.2 step=0.1 name=sleep_time></td>
+                    </tr>
+                    <tr>
+                        <td>Rotate Times</td>
+                        <td><input type=number value=5 name=rotate_times></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div id="mc33926" class="robot_type" style="display: none">
+            <h2>MC33926</h2>
+            <form>
+                <table>
+                    <tr>
+                        <td>Driving Speed</td>
+                        <td><input type=number value=180 name=driving_speed></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div id="motor_hat" class="robot_type" style="display: none">
+            <h2>Motor Hat</h2>
+            <form>
+                <table>
+                    <tr>
+                        <td>Day Speed</td>
+                        <td><input type=number value=255 max=255 min=0 name=day_speed></td>
+                    </tr>
+                    <tr>
+                        <td>Night Speed</td>
+                        <td><input type=number value=255 max=255 min=0 name=night_speed></td>
+                    </tr>
+                    <tr>
+                        <td>Turning Speed</td>
+                        <td><input type=number value=250 max=255 min=0 name=turning_speed></td>
+                    </tr>
+                    <tr>
+                        <td>Forward</td>
+                        <td><input type=text value=[-1,1,-1,1] name=forward></td>
+                    </tr>
+                    <tr>
+                        <td>Left</td>
+                        <td><input type=text value=[1,1,1,1] name=left></td>
+                    </tr>
+                    <tr>
+                        <td>Slow for low battery</td>
+                        <td><input type=checkbox name=slow_for_low_battery></td>
+                    </tr>
+                    <tr>
+                        <td>Charge Hours</td>
+                        <td><input type=number value=3.0 step=0.1 name=charge_hours></td>
+                    </tr>
+                    <tr>
+                        <td>Discharge Hours</td>
+                        <td><input type=number value=8.0 step=0.1 name=discharge_hours></td>
+                    </tr>
+                    <tr>
+                        <td>Charge Check Interval</td>
+                        <td><input type=number value=5 name=charge_check_interval></td>
+                    </tr>
+                    <tr>
+                        <td>Charge IO Number</td>
+                        <td><input type=number value=17 name=charge_io_number></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div id="motozero" class="robot_type" style="display: none">
+            <h2>Motozero</h2>
+            <form>
+                <table>
+                    <tr>
+                        <td>Motor Delay</td>
+                        <td><input type=number value=0.3 step=0.1 name=motor_delay></td>
+                    </tr>
+                    <tr>
+                        <td>Motor 1A</td>
+                        <td><input type=number value=24 name=motor_1a></td>
+                    </tr>
+                    <tr>
+                        <td>Motor 1B</td>
+                        <td><input type=number value=24 name=motor_1b></td>
+                    </tr>
+                    <tr>
+                        <td>Motor 1 Enable</td>
+                        <td><input type=number value=5 name=motor_1_enable></td>
+                    </tr>
+                    <tr>
+                        <td>Motor 2A</td>
+                        <td><input type=number value=24 name=motor_2a></td>
+                    </tr>
+                    <tr>
+                        <td>Motor 2B</td>
+                        <td><input type=number value=24 name=motor_2b></td>
+                    </tr>
+                    <tr>
+                        <td>Motor 2 Enable</td>
+                        <td><input type=number value=17 name=motor_2_enable></td>
+                    </tr>
+                    <tr>
+                        <td>Motor 3A</td>
+                        <td><input type=number value=24 name=motor_3a></td>
+                    </tr>
+                    <tr>
+                        <td>Motor 3B</td>
+                        <td><input type=number value=24 name=motor_3b></td>
+                    </tr>
+                    <tr>
+                        <td>Motor 3 Enable</td>
+                        <td><input type=number value=12 name=motor_3_enable></td>
+                    </tr>
+                    <tr>
+                        <td>Motor 4A</td>
+                        <td><input type=number value=24 name=motor_4a></td>
+                    </tr>
+                    <tr>
+                        <td>Motor 4B</td>
+                        <td><input type=number value=24 name=motor_4b></td>
+                    </tr>
+                    <tr>
+                        <td>Motor 4 Enable</td>
+                        <td><input type=number value=25 name=motor_4_enable></td>
+                    </tr>
+
+                </table>
+            </form>
+        </div>
+        <div id="owi_arm" class="robot_type" style="display: none">
+            <h2>OWI Arm</h2>
+            <p>There's nothing here yet...</p>
+        </div>
+        <div id="pololu" class="robot_type" style="display: none">
+            <h2>Pololu</h2>
+            <form>
+                <table>
+                    <tr>
+                        <td>Driving Speed</td>
+                        <td><input type=number value=90 name=driving_speed></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div id="serial" class="robot_type" style="display: none">
+            <h2>Serial</h2>
+            <form>
+                <table>
+                    <tr>
+                        <td>Serial Device</td>
+                        <td><input type=text value=/dev/ttyACM0 name=serial_device></td>
+                    </tr>
+                    <tr>
+                        <td>Baud Rate</td>
+                        <td><select>
+                                <option value=110>110</option>
+                                <option value=300>300</option>
+                                <option value=600>600</option>
+                                <option value=1200>1200</option>
+                                <option value=2400>2400</option>
+                                <option value=4800>4800</option>
+                                <option value=9600 selected>9600</option>
+                                <option value=14400>14400</option>
+                                <option value=19200>19200</option>
+                                <option value=38400>38400</option>
+                                <option value=57600>57600</option>
+                                <option value=115200>115200</option>
+                                <option value=128000>128000</option>
+                                <option value=256000>256000</option>
+                            </select></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+    <div id="camera">
+        <h1>Camera</h1>
+        <form>
+            <table>
+                <tr>
+                    <td>No Camera</td>
+                    <td><input type=checkbox name=no_camera></td>
+                </tr>
+                <tr>
+                    <td>No Mic</td>
+                    <td><input type=checkbox name=no_mic></td>
+                </tr>
+                <tr>
+                    <td>Type</td>
+                    <td><select id="camera_type_selector">
+                            <option value=ffmpeg>FFMPEG</option>
+                            <option value=ffmpeg_arecord>FFMPEG-arecord</option>
+                            <option value=none selected>None</option>
+                        </select></td>
+                </tr>
+                <tr>
+                    <td>Resolution</td>
+                    <td><select>
+                            <option value=768x432 selected>768 x 432</option>
+                            <option value=1280x720>1280 x 720</option>
+                        </select></td>
+                </tr>
+                <tr>
+                    <td>Camera Device</td>
+                    <td><input type=text value=/dev/video0 name=camera_device></td>
+                </tr>
+                <tr>
+                    <td>Audio Hardware Number</td>
+                    <td><input type=number value=1></td>
+                </tr>
+            </table>
+        </form>
+        <div id="none" class="camera_type" style="display: none">
+            <!--Javascript doesn't like it when this div isn't here.-->
+        </div>
+        <div id="ffmpeg" class="camera_type" style="display: none">
+
+        </div>
+        <div id="ffmpeg_arecord" class="camera_type" style="display: none">
+        
+        </div>
     </div>
 
     <footer>
